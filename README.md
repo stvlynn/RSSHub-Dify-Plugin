@@ -140,7 +140,7 @@ Here are some commonly used route examples:
 
 ## Developer
 
-- stvlynn
+- [Steven Lynn](https://github.com/stvlynn)
 
 ## License
 
