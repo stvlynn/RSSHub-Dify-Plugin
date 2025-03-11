@@ -4,6 +4,10 @@
 
 This is a RSSHub plugin for Dify that allows you to access RSS feeds from RSSHub through Dify.
 
+# Installation
+
+Read more in [Release](https://github.com/stvlynn/RSSHub-Dify-Plugin/releases)
+
 ## Features
 
 - Get RSS feeds from RSSHub
