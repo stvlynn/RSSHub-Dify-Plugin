@@ -16,6 +16,7 @@ tools:
   - tools/linkedin.yaml
   - tools/threads.yaml
   - tools/discord.yaml
+  - tools/google_news.yaml
 extra:
   python:
     source: provider/rsshub.py

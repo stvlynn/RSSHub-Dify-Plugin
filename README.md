@@ -131,6 +131,20 @@ Get RSS feeds from Discord via RSSHub.
 - `discord_authorization`: Discord authorization header from the browser (required for both route types)
 - `limit`: Maximum number of items to return, default is 10
 
+### Google News
+
+Get RSS feeds from Google News via RSSHub.
+
+![](./_assets/google_news.png)
+
+**Parameters:**
+- `base_url`: The base URL of the RSSHub instance, default is `https://rsshub.app`
+- `category`: Category title of Google News, e.g. 'Top stories', 'World', 'Business'
+- `language_code`: Language code for Google News content, e.g. 'en-US', 'zh-CN', 'ja-JP'
+- `country_code`: Country or region code for Google News content, e.g. 'US', 'CN', 'JP'
+- `country_edition`: Country edition for Google News, usually in format 'COUNTRY:LANGUAGE', e.g. 'US:en', 'CN:zh'
+- `limit`: Maximum number of items to return, default is 10
+
 ## Supported Routes
 
 RSSHub supports a large number of routes. You can view all supported routes in the [RSSHub Documentation](https://docs.rsshub.app/).
@@ -153,7 +167,7 @@ Here are some commonly used route examples:
 ## rsshub
 
 **Author:** stvlynn
-**Version:** 0.0.1
+**Version:** 0.0.2
 **Type:** tool
 
 ### Description
