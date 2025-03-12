@@ -5,7 +5,7 @@ import html
 import re
 import xml.etree.ElementTree as ET
 from datetime import datetime
-from urllib.parse import urljoin, quote
+from urllib.parse import urljoin, quote, urlparse, parse_qs, urlencode
 
 from dify_plugin import Tool
 from dify_plugin.entities.tool import ToolInvokeMessage
@@ -22,6 +22,7 @@ class LinkedInTool(Tool):
         geo_id = tool_parameters.get("geo_id", "")
         limit = int(tool_parameters.get("limit", 10))
         base_url = tool_parameters.get("base_url", "https://rsshub.app")
+        access_key = tool_parameters.get("access_key", "")
         
         # 确保base_url以/结尾
         if not base_url.endswith("/"):
@@ -53,6 +54,10 @@ class LinkedInTool(Tool):
             # 添加地理位置ID
             if geo_id:
                 params.append(f"geoId={geo_id}")
+                
+            # 添加访问密钥
+            if access_key:
+                params.append(f"key={access_key}")
                 
             # 将参数添加到路由中
             if params:

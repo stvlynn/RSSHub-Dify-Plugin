@@ -14,6 +14,7 @@ logger = logging.getLogger(__name__)
 
 class GoogleNewsRequest(BaseModel):
     base_url: str = Field(default="https://rsshub.app", description="RSSHub base URL")
+    access_key: str = Field(default="", description="Access key for RSSHub routes")
     category: str = Field(..., description="Category title of Google News")
     language_code: str = Field(..., description="Language code for Google News content")
     country_code: str = Field(..., description="Country or region code for Google News content")
@@ -47,6 +48,14 @@ class GoogleNewsTool(Tool):
                 
             # 构建完整URL
             url = base_url.rstrip("/") + route
+            
+            # 如果提供了访问密钥，添加到URL中
+            if req.access_key:
+                # 检查URL是否已经有查询参数
+                if "?" in url:
+                    url += f"&key={req.access_key}"
+                else:
+                    url += f"?key={req.access_key}"
             
             logger.info(f"Fetching Google News from: {url}")
             

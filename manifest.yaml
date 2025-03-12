@@ -1,4 +1,4 @@
-version: 0.0.2
+version: 0.0.1
 type: plugin
 author: stvlynn
 name: rsshub
@@ -18,7 +18,7 @@ plugins:
   tools:
     - provider/rsshub.yaml
 meta:
-  version: 0.0.2
+  version: 0.0.1
   arch:
     - amd64
     - arm64

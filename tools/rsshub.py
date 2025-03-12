@@ -5,7 +5,7 @@ import html
 import re
 import xml.etree.ElementTree as ET
 from datetime import datetime
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse, parse_qs, urlencode
 
 from dify_plugin import Tool
 from dify_plugin.entities.tool import ToolInvokeMessage
@@ -16,6 +16,7 @@ class RsshubTool(Tool):
         route = tool_parameters.get("route", "")
         limit = int(tool_parameters.get("limit", 10))
         base_url = tool_parameters.get("base_url", "https://rsshub.app")
+        access_key = tool_parameters.get("access_key", "")
         
         # 确保route以/开头
         if not route.startswith("/"):
@@ -27,6 +28,22 @@ class RsshubTool(Tool):
             
         # 构建完整URL
         url = urljoin(base_url, route)
+        
+        # 如果提供了访问密钥，添加到URL中
+        if access_key:
+            # 解析URL
+            parsed_url = urlparse(url)
+            # 获取现有查询参数
+            query_params = parse_qs(parsed_url.query)
+            # 添加key参数
+            query_params['key'] = [access_key]
+            # 重新构建查询字符串
+            new_query = urlencode(query_params, doseq=True)
+            # 替换URL中的查询部分
+            url_parts = list(parsed_url)
+            url_parts[4] = new_query
+            # 重新组合URL
+            url = urljoin(base_url, route + "?" + new_query)
         
         try:
             # 获取RSS源

@@ -5,7 +5,7 @@ import html
 import re
 import xml.etree.ElementTree as ET
 from datetime import datetime
-from urllib.parse import urljoin, quote, urlencode
+from urllib.parse import urljoin, quote, urlencode, parse_qs, urlparse
 
 from dify_plugin import Tool
 from dify_plugin.entities.tool import ToolInvokeMessage
@@ -16,6 +16,7 @@ class ThreadsTool(Tool):
         route_type = tool_parameters.get("route_type", "user")
         username = tool_parameters.get("username", "")
         base_url = tool_parameters.get("base_url", "https://rsshub.app")
+        access_key = tool_parameters.get("access_key", "")
         show_author_in_title = tool_parameters.get("show_author_in_title", True)
         show_author_in_desc = tool_parameters.get("show_author_in_desc", True)
         show_quoted_in_title = tool_parameters.get("show_quoted_in_title", True)
@@ -49,6 +50,10 @@ class ThreadsTool(Tool):
             query_params["replies"] = "true" if replies else "false"
             query_params["showAuthorAvatarInDesc"] = "true" if show_author_avatar_in_desc else "false"
             query_params["showQuotedAuthorAvatarInDesc"] = "true" if show_quoted_author_avatar_in_desc else "false"
+            
+            # 如果提供了访问密钥，添加到查询参数中
+            if access_key:
+                query_params["key"] = access_key
         else:
             yield self.create_text_message(f"不支持的路由类型: {route_type}")
             return

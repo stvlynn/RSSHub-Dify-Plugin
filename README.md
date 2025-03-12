@@ -167,7 +167,7 @@ Here are some commonly used route examples:
 ## rsshub
 
 **Author:** stvlynn
-**Version:** 0.0.2
+**Version:** 0.0.1
 **Type:** tool
 
 ### Description
